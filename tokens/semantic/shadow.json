@@ -1,0 +1,13 @@
+{
+  "semantic": {
+    "shadow": {
+      "$type": "shadow",
+      "sm": {
+        "$value": { "color": "#0f172a14", "offsetX": "0px", "offsetY": "1px", "blur": "2px", "spread": "0px" }
+      },
+      "md": {
+        "$value": { "color": "#0f172a1f", "offsetX": "0px", "offsetY": "4px", "blur": "12px", "spread": "0px" }
+      }
+    }
+  }
+}

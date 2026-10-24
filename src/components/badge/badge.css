@@ -1,0 +1,30 @@
+/* Badge — rótulo curto de status: --info, --success, --warning, --danger */
+.es-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: var(--es-space-1) var(--es-space-2);
+  border-radius: var(--es-radius-full);
+  font-family: var(--es-font-family-sans);
+  font-size: var(--es-font-size-xs);
+  font-weight: var(--es-font-weight-medium);
+  line-height: var(--es-font-line-height-tight);
+  background: var(--es-semantic-color-background-muted);
+  color: var(--es-semantic-color-text-default);
+}
+
+.es-badge--info {
+  background: var(--es-semantic-color-feedback-info-background);
+  color: var(--es-semantic-color-feedback-info-text);
+}
+.es-badge--success {
+  background: var(--es-semantic-color-feedback-success-background);
+  color: var(--es-semantic-color-feedback-success-text);
+}
+.es-badge--warning {
+  background: var(--es-semantic-color-feedback-warning-background);
+  color: var(--es-semantic-color-feedback-warning-text);
+}
+.es-badge--danger {
+  background: var(--es-semantic-color-feedback-danger-background);
+  color: var(--es-semantic-color-feedback-danger-text);
+}

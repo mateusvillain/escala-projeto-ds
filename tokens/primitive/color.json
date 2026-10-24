@@ -1,0 +1,35 @@
+{
+  "color": {
+    "$type": "color",
+    "$description": "Paleta base. Não use diretamente nos componentes — use os tokens semânticos.",
+    "neutral": {
+      "0":   { "$value": "#ffffff" },
+      "50":  { "$value": "#f8fafc" },
+      "100": { "$value": "#f1f5f9" },
+      "200": { "$value": "#e2e8f0" },
+      "300": { "$value": "#cbd5e1" },
+      "500": { "$value": "#64748b" },
+      "700": { "$value": "#334155" },
+      "900": { "$value": "#0f172a" }
+    },
+    "blue": {
+      "100": { "$value": "#dbeafe" },
+      "500": { "$value": "#3b82f6" },
+      "600": { "$value": "#2563eb" },
+      "700": { "$value": "#1d4ed8" }
+    },
+    "green": {
+      "100": { "$value": "#dcfce7" },
+      "700": { "$value": "#15803d" }
+    },
+    "yellow": {
+      "100": { "$value": "#fef9c3" },
+      "700": { "$value": "#a16207" }
+    },
+    "red": {
+      "100": { "$value": "#fee2e2" },
+      "600": { "$value": "#dc2626" },
+      "700": { "$value": "#b91c1c" }
+    }
+  }
+}

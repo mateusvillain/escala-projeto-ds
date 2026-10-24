@@ -1,0 +1,15 @@
+/* Estilos base globais do Escala System */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--es-font-family-sans);
+  font-size: var(--es-font-size-md);
+  line-height: var(--es-font-line-height-normal);
+  color: var(--es-semantic-color-text-default);
+  background: var(--es-semantic-color-background-default);
+}

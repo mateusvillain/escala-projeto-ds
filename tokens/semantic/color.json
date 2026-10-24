@@ -1,0 +1,45 @@
+{
+  "semantic": {
+    "color": {
+      "$type": "color",
+      "$description": "Tokens com significado. Componentes consomem SOMENTE estes.",
+      "background": {
+        "default": { "$value": "{color.neutral.0}" },
+        "subtle":  { "$value": "{color.neutral.50}" },
+        "muted":   { "$value": "{color.neutral.100}" }
+      },
+      "text": {
+        "default":  { "$value": "{color.neutral.900}" },
+        "muted":    { "$value": "{color.neutral.500}" },
+        "inverse":  { "$value": "{color.neutral.0}" },
+        "disabled": { "$value": "{color.neutral.300}" }
+      },
+      "border": {
+        "default": { "$value": "{color.neutral.200}" },
+        "strong":  { "$value": "{color.neutral.300}" },
+        "control": { "$value": "{color.neutral.500}", "$description": "Borda de controles de formulário (input, checkbox, radio): contraste >= 3:1 (WCAG 1.4.11)." },
+        "focus":   { "$value": "{color.blue.500}" }
+      },
+      "action": {
+        "primary": {
+          "default": { "$value": "{color.blue.600}" },
+          "hover":   { "$value": "{color.blue.700}" }
+        },
+        "secondary": {
+          "default": { "$value": "{color.neutral.100}" },
+          "hover":   { "$value": "{color.neutral.200}" }
+        },
+        "danger": {
+          "default": { "$value": "{color.red.600}" },
+          "hover":   { "$value": "{color.red.700}" }
+        }
+      },
+      "feedback": {
+        "info":    { "background": { "$value": "{color.blue.100}" },   "text": { "$value": "{color.blue.700}" } },
+        "success": { "background": { "$value": "{color.green.100}" },  "text": { "$value": "{color.green.700}" } },
+        "warning": { "background": { "$value": "{color.yellow.100}" }, "text": { "$value": "{color.yellow.700}" } },
+        "danger":  { "background": { "$value": "{color.red.100}" },    "text": { "$value": "{color.red.700}" } }
+      }
+    }
+  }
+}

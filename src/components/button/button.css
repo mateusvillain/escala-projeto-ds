@@ -1,0 +1,62 @@
+/* Button — .es-button + modificadores (--primary, --secondary, --danger, --sm, --lg) */
+.es-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--es-space-2);
+  padding: var(--es-space-2) var(--es-space-4);
+  border: var(--es-border-width-thin) solid transparent;
+  border-radius: var(--es-radius-md);
+  font-family: var(--es-font-family-sans);
+  font-size: var(--es-font-size-sm);
+  font-weight: var(--es-font-weight-semibold);
+  line-height: var(--es-font-line-height-tight);
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.es-button:focus-visible {
+  outline: var(--es-border-width-thick) solid var(--es-semantic-color-border-focus);
+  outline-offset: 2px;
+}
+
+.es-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Variantes */
+.es-button--primary {
+  background: var(--es-semantic-color-action-primary-default);
+  color: var(--es-semantic-color-text-inverse);
+}
+.es-button--primary:hover:not(:disabled) {
+  background: var(--es-semantic-color-action-primary-hover);
+}
+
+.es-button--secondary {
+  background: var(--es-semantic-color-action-secondary-default);
+  color: var(--es-semantic-color-text-default);
+  border-color: var(--es-semantic-color-border-default);
+}
+.es-button--secondary:hover:not(:disabled) {
+  background: var(--es-semantic-color-action-secondary-hover);
+}
+
+.es-button--danger {
+  background: var(--es-semantic-color-action-danger-default);
+  color: var(--es-semantic-color-text-inverse);
+}
+.es-button--danger:hover:not(:disabled) {
+  background: var(--es-semantic-color-action-danger-hover);
+}
+
+/* Tamanhos */
+.es-button--sm {
+  padding: var(--es-space-1) var(--es-space-3);
+  font-size: var(--es-font-size-xs);
+}
+.es-button--lg {
+  padding: var(--es-space-3) var(--es-space-6);
+  font-size: var(--es-font-size-md);
+}

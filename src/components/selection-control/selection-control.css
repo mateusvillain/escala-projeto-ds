@@ -1,0 +1,111 @@
+/* Selection Control — checkbox ou radio nativo com label (.es-choice); checkbox aceita :indeterminate */
+.es-choice {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--es-space-2);
+  min-height: 24px;
+  font-family: var(--es-font-family-sans);
+  font-size: var(--es-font-size-sm);
+  line-height: var(--es-font-line-height-tight);
+  color: var(--es-semantic-color-text-default);
+  cursor: pointer;
+}
+
+.es-choice__input {
+  appearance: none;
+  display: inline-grid;
+  place-content: center;
+  flex: none;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  border: var(--es-border-width-thin) solid var(--es-semantic-color-border-control);
+  border-radius: var(--es-radius-sm);
+  background: var(--es-semantic-color-background-default);
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.es-choice__input[type='radio'] {
+  border-radius: var(--es-radius-full);
+}
+
+/* Marca interna: check (checkbox) ou ponto (radio), na cor do token */
+.es-choice__input::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  background: var(--es-semantic-color-text-inverse);
+  mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M20 6L9 17l-5-5'/%3E%3C/svg%3E")
+    center / contain no-repeat;
+  transform: scale(0);
+}
+
+.es-choice__input[type='radio']::before {
+  width: 6px;
+  height: 6px;
+  border-radius: var(--es-radius-full);
+  mask: none;
+}
+
+/* Estado misto: traço horizontal no lugar do check */
+.es-choice__input[type='checkbox']:indeterminate::before {
+  height: 2px;
+  width: 8px;
+  border-radius: var(--es-radius-full);
+  mask: none;
+}
+
+.es-choice__input:checked,
+.es-choice__input[type='checkbox']:indeterminate {
+  border-color: var(--es-semantic-color-action-primary-default);
+  background: var(--es-semantic-color-action-primary-default);
+}
+
+.es-choice__input:checked::before,
+.es-choice__input[type='checkbox']:indeterminate::before {
+  transform: scale(1);
+}
+
+/* Hover no controle ou no rótulo */
+.es-choice:hover .es-choice__input:not(:disabled) {
+  border-color: var(--es-semantic-color-action-primary-default);
+}
+
+.es-choice__input:focus-visible {
+  outline: var(--es-border-width-thick) solid var(--es-semantic-color-border-focus);
+  outline-offset: 2px;
+}
+
+/* Desabilitado */
+.es-choice:has(.es-choice__input:disabled) {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.es-choice__input:disabled {
+  cursor: not-allowed;
+}
+
+/* Telas de toque: área de toque confortável */
+@media (pointer: coarse) {
+  .es-choice {
+    min-height: 44px;
+  }
+}
+
+/* Modo de alto contraste (Windows): mantém a marca visível */
+@media (forced-colors: active) {
+  .es-choice__input::before {
+    background: CanvasText;
+  }
+  .es-choice__input:checked,
+  .es-choice__input[type='checkbox']:indeterminate {
+    border-color: Highlight;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .es-choice__input {
+    transition: none;
+  }
+}

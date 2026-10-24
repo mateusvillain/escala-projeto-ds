@@ -1,0 +1,37 @@
+/* Card — container com header, corpo e rodapé opcionais */
+.es-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--es-space-3);
+  padding: var(--es-space-6);
+  border: var(--es-border-width-thin) solid var(--es-semantic-color-border-default);
+  border-radius: var(--es-radius-lg);
+  background: var(--es-semantic-color-background-default);
+  box-shadow: var(--es-semantic-shadow-sm);
+  font-family: var(--es-font-family-sans);
+  color: var(--es-semantic-color-text-default);
+}
+
+.es-card--elevated {
+  border-color: transparent;
+  box-shadow: var(--es-semantic-shadow-md);
+}
+
+.es-card__title {
+  margin: 0;
+  font-size: var(--es-font-size-lg);
+  font-weight: var(--es-font-weight-bold);
+  line-height: var(--es-font-line-height-tight);
+}
+
+.es-card__body {
+  margin: 0;
+  font-size: var(--es-font-size-sm);
+  color: var(--es-semantic-color-text-muted);
+}
+
+.es-card__footer {
+  display: flex;
+  gap: var(--es-space-2);
+  margin-top: var(--es-space-2);
+}

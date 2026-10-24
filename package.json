@@ -1,0 +1,25 @@
+{
+  "name": "escala-system",
+  "version": "0.1.0",
+  "description": "Design system didático: tokens DTCG + Style Dictionary + componentes HTML/CSS + Storybook",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "tokens": "node style-dictionary.config.js",
+    "storybook": "npm run tokens && storybook dev -p 6006",
+    "build-storybook": "npm run tokens && storybook build"
+  },
+  "devDependencies": {
+    "@storybook/addon-docs": "^10.6.3",
+    "@storybook/html-vite": "^10.6.3",
+    "remark-gfm": "^4.0.1",
+    "storybook": "^10.6.3",
+    "style-dictionary": "^5.7.0",
+    "vite": "^8.3.5"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild"
+    ]
+  }
+}

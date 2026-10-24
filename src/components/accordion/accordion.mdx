@@ -1,0 +1,234 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import * as AccordionStories from './accordion.stories.js';
+
+<Meta of={AccordionStories} />
+
+export const DoDont = ({ children }) => (
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16, margin: '16px 0 32px' }}>
+    {children}
+  </div>
+);
+
+export const Example = ({ kind, children }) => {
+  const isDo = kind === 'do';
+  return (
+    <div>
+      <div
+        style={{
+          borderTop: `4px solid ${isDo ? 'var(--es-color-green-700)' : 'var(--es-color-red-600)'}`,
+          paddingTop: 8,
+          fontWeight: 600,
+          color: isDo ? 'var(--es-color-green-700)' : 'var(--es-color-red-700)',
+        }}
+      >
+        {isDo ? '✓ Faça' : '✕ Não faça'}
+      </div>
+      {children}
+    </div>
+  );
+};
+
+# Accordion
+
+## O que é
+
+O **Accordion** é uma seção expansível. Ele mostra um título sempre visível e esconde o conteúdo relacionado até que a pessoa decida abri-lo. Assim, uma tela com muita informação fica curta e fácil de percorrer, e cada pessoa abre só o que lhe interessa.
+
+<Canvas of={AccordionStories.Default} />
+
+<Controls of={AccordionStories.Default} />
+
+### Anatomia
+
+1. **Cabeçalho** (`summary`): área clicável que abre e fecha o conteúdo.
+   - **Ícone** (opcional): reforça visualmente o assunto do título.
+   - **Título**: diz o que existe dentro do accordion.
+   - **Chevron**: indica o estado; aponta para baixo quando fechado e para cima quando aberto.
+2. **Conteúdo**: aparece só quando o accordion está aberto, separado do cabeçalho por um divisor.
+   - **Corpo**: texto de apoio.
+   - **Grupo de opções** (opcional): checkboxes ou radios, usando o componente Selection Control.
+
+### Variantes
+
+| Propriedade | Valores | Penpot | Código |
+| --- | --- | --- | --- |
+| Estado | `closed`, `open` | `State` | atributo `open` no `<details>` |
+| Ícone | qualquer ícone do grupo `Icon` ou nenhum | troca da instância `icon` | `.es-accordion__icon` presente ou não |
+| Opções | nenhuma, checkbox ou radio | `option` → `Type` | `<fieldset>` com `.es-choice` |
+
+<Canvas of={AccordionStories.Aberto} />
+
+## Cenários de uso
+
+### Quando usar
+
+- **Conteúdo secundário ou opcional**, como configurações avançadas ou detalhes técnicos que a maioria das pessoas não precisa ver.
+- **Filtros agrupados por categoria**, em que cada grupo de checkboxes fica dentro de um accordion.
+- **Perguntas frequentes (FAQ)**: várias perguntas curtas, e a pessoa abre só a que procura.
+- **Formulários longos** divididos em seções que podem ser preenchidas em qualquer ordem.
+
+<Canvas of={AccordionStories.ComCheckbox} />
+
+<Canvas of={AccordionStories.ComRadio} />
+
+### Grupo de accordions
+
+Para empilhar vários accordions, use o wrapper `.es-accordion-group`. Para que só um fique aberto por vez, dê o mesmo atributo `name` a todos os `<details>`; o navegador fecha os outros sozinho.
+
+<Canvas of={AccordionStories.Grupo} />
+
+### Quando não usar
+
+- **Informação essencial para concluir a tarefa**: erros, campos obrigatórios e avisos legais devem ficar sempre visíveis.
+- **Conteúdo curto**: se tudo cabe na tela, esconder só adiciona cliques.
+- **Navegação entre visões paralelas** do mesmo objeto, como "Resumo" e "Histórico": prefira abas.
+- **Conteúdo que a pessoa precisa comparar** lado a lado: com accordions, só dá para ver uma parte por vez.
+
+## Content
+
+### Título
+
+- Use um **substantivo ou expressão curta** que descreva o conteúdo: "Status do projeto", e não "Clique para ver os status".
+- Mantenha em **uma linha** no desktop, idealmente até 40 caracteres.
+- Use **sentence case**: só a primeira letra maiúscula, sem ponto final.
+- Não use verbos de interface como "clique", "expanda" ou "veja mais"; o chevron já comunica a ação.
+
+### Corpo
+
+- De uma a três frases explicando o contexto ou orientando a escolha.
+- Se houver opções logo abaixo, o corpo funciona como **descrição do grupo** e é lido pelo leitor de tela junto com as opções.
+
+### Ícone
+
+- É **decorativo**: o título precisa fazer sentido sozinho.
+- Em um grupo, use ícone em **todos** os itens ou em **nenhum**.
+
+### Opções (checkbox e radio)
+
+- **Checkbox** quando a pessoa pode escolher várias opções (ou nenhuma); **radio** quando precisa escolher exatamente uma.
+- Labels curtos e paralelos: mesma classe gramatical e tamanho parecido.
+- Ordene de forma lógica (frequência, ordem natural ou alfabética).
+- Para radios, deixe uma opção pré-selecionada quando houver um padrão seguro.
+- Use o **estado misto** do checkbox (`input.indeterminate = true`) só em "Selecionar todos", quando parte das opções do grupo está marcada.
+- Para mais de ~7 opções, considere outro padrão, como uma busca ou uma lista com filtro.
+
+## Dos and don'ts
+
+<DoDont>
+  <Example kind="do">
+    <p>Use títulos curtos que descrevem o conteúdo.</p>
+    <Canvas of={AccordionStories.DoTituloCurto} />
+  </Example>
+  <Example kind="dont">
+    <p>Não escreva instruções de interface ou frases longas no título.</p>
+    <Canvas of={AccordionStories.DontTituloLongo} />
+  </Example>
+</DoDont>
+
+<DoDont>
+  <Example kind="do">
+    <p>Use para conteúdo opcional, que pode ficar escondido sem prejuízo.</p>
+    <Canvas of={AccordionStories.DoConteudoOpcional} />
+  </Example>
+  <Example kind="dont">
+    <p>Não esconda informação ou ação obrigatória para concluir a tarefa.</p>
+    <Canvas of={AccordionStories.DontConteudoCritico} />
+  </Example>
+</DoDont>
+
+<DoDont>
+  <Example kind="do">
+    <p>Em um grupo, mantenha o mesmo padrão de ícone em todos os itens.</p>
+    <Canvas of={AccordionStories.DoIconesConsistentes} />
+  </Example>
+  <Example kind="dont">
+    <p>Não misture itens com e sem ícone, ou ícones sem relação entre si.</p>
+    <Canvas of={AccordionStories.DontIconesMisturados} />
+  </Example>
+</DoDont>
+
+Além disso:
+
+- **Não aninhe** um accordion dentro de outro; prefira reorganizar o conteúdo.
+- **Não coloque** botões, links ou campos dentro do cabeçalho (`summary`); eles ficam inacessíveis e conflitam com o clique de abrir e fechar.
+- **Não use** o accordion como container de formulário que envia dados ao fechar; abrir e fechar não deve ter efeitos colaterais.
+
+## Responsividade
+
+- **Largura fluida**: o accordion ocupa 100% do container. A largura de 400px do Penpot é só de exemplo; quem define o limite é o layout.
+- **Quebra de título**: títulos longos quebram em várias linhas. O ícone e o chevron ficam alinhados à primeira linha e não encolhem.
+- **Área de toque**: o cabeçalho tem no mínimo 52px de altura em qualquer tela. Em dispositivos de toque (`pointer: coarse`), cada opção do grupo cresce para 44px de altura.
+- **Espaçamentos fixos por token**: paddings e gaps não mudam por breakpoint, o que mantém o ritmo vertical em todas as telas.
+- **Em telas pequenas**, prefira grupos com só um item aberto (atributo `name`) para evitar páginas muito longas.
+
+<Canvas of={AccordionStories.Responsivo} />
+
+## Acessibilidade
+
+O componente usa os elementos nativos `<details>` e `<summary>`, então teclado, foco e anúncio de estado funcionam **sem JavaScript**.
+
+### Teclado
+
+| Tecla | Ação |
+| --- | --- |
+| `Tab` / `Shift + Tab` | Move o foco entre os cabeçalhos e, quando aberto, para as opções do conteúdo. |
+| `Enter` / `Espaço` | Abre ou fecha o accordion com foco. |
+| `Espaço` (checkbox) | Marca ou desmarca a opção. Um checkbox em estado misto passa a marcado. |
+| `↑` `↓` (radio) | Move a seleção entre as opções do grupo. |
+
+### Leitores de tela
+
+- O `<summary>` é anunciado como **botão** com estado **expandido/recolhido**. O nome acessível é o texto do título.
+- Um checkbox em estado misto é anunciado como "parcialmente marcado" (ou "misto").
+- Os ícones e o chevron usam `aria-hidden="true"` e não são lidos.
+- O grupo de opções é um `<fieldset>` com `<legend>` visualmente oculta (o próprio título). O corpo é ligado ao grupo por `aria-describedby`, então a pessoa ouve o nome do grupo, a descrição e depois cada opção.
+- Cada opção é um `<input>` nativo dentro de um `<label>`, e o texto inteiro é clicável.
+- Elementos dentro do `<summary>` perdem a semântica própria (o conteúdo de um botão é tratado como texto). Por isso **não coloque headings, links ou botões no cabeçalho**. Se a página precisa de um heading para navegação, coloque-o antes do accordion.
+
+### Visual
+
+- **Foco visível**: outline de 2px em `semantic.color.border.focus` no cabeçalho e nas opções, só na navegação por teclado (`:focus-visible`).
+- **Contraste de texto**: o título (`text.default`) e o corpo (`text.muted`, 4,76:1) atendem ao WCAG AA.
+- **Contraste de controles**: a borda das opções desmarcadas usa `semantic.color.border.control` (#64748b, 4,76:1 sobre branco), acima dos 3:1 pedidos pelo WCAG 1.4.11. Marcadas, usam `action.primary.default`.
+- **Hover**: passar o mouse no controle **ou no texto** da opção destaca a borda, deixando claro que o rótulo inteiro é clicável.
+- **Movimento reduzido**: a rotação do chevron e as transições são desligadas com `prefers-reduced-motion: reduce`.
+- **Alto contraste do Windows**: com `forced-colors: active`, a marca do checkbox e do radio usa cores do sistema e continua visível.
+
+## Referência de código
+
+```html
+<details class="es-accordion" open>
+  <summary class="es-accordion__header">
+    <span class="es-accordion__icon"><!-- svg aria-hidden="true" --></span>
+    <span class="es-accordion__title">Status do projeto</span>
+    <span class="es-accordion__chevron"><!-- svg aria-hidden="true" --></span>
+  </summary>
+  <div class="es-accordion__content">
+    <p class="es-accordion__body" id="status-body">Mostre apenas os projetos nos status selecionados.</p>
+    <fieldset class="es-accordion__options" aria-describedby="status-body">
+      <legend class="es-accordion__legend">Status do projeto</legend>
+      <label class="es-choice">
+        <input class="es-choice__input" type="checkbox" name="status" value="ativo" checked />
+        <span>Ativo</span>
+      </label>
+      <label class="es-choice">
+        <input class="es-choice__input" type="checkbox" name="status" value="pausado" />
+        <span>Pausado</span>
+      </label>
+    </fieldset>
+  </div>
+</details>
+```
+
+| Classe | Elemento | Função |
+| --- | --- | --- |
+| `.es-accordion` | `details` | Container; o atributo `open` controla o estado. |
+| `.es-accordion__header` | `summary` | Cabeçalho clicável. |
+| `.es-accordion__icon` | `span` | Ícone opcional, 20px. |
+| `.es-accordion__title` | `span` | Título. |
+| `.es-accordion__chevron` | `span` | Indicador de estado; gira 180° quando aberto. |
+| `.es-accordion__content` | `div` | Conteúdo com divisor no topo. |
+| `.es-accordion__body` | `p` | Texto de apoio. |
+| `.es-accordion__options` | `fieldset` | Grupo de checkbox ou radio. |
+| `.es-accordion__legend` | `legend` | Nome do grupo, visível só para leitores de tela. |
+| `.es-accordion-group` | `div` | Empilha vários accordions com `space.2` de gap. |

@@ -1,0 +1,9 @@
+/* Ponto de entrada: tokens + base + todos os componentes */
+@import '../build/css/tokens.css';
+@import './styles/base.css';
+@import './components/button/button.css';
+@import './components/badge/badge.css';
+@import './components/input/input.css';
+@import './components/card/card.css';
+@import './components/selection-control/selection-control.css';
+@import './components/accordion/accordion.css';
